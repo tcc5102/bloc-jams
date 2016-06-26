@@ -30,6 +30,21 @@ var albumMarconi = {
   ]
 };
 
+var albumCooper = {
+  title: 'The Test Album',
+  artist: 'Tyler Cooper',
+  label: 'Domino',
+  year: '2016',
+  albumArtUrl: 'assets/images/album_covers/09.png',
+  songs: [
+    { title: 'Everything in Its Right Place', duration: '1:01' },
+    { title: 'Kid A', duration: '5:01' },
+    { title: 'The National Anthem', duration: '3:21'},
+    { title: 'How to Disappear Completely', duration: '3:14' },
+    { title: 'Treefingers', duration: '2:15'}
+  ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
       '<tr class="album-view-song-item">'
@@ -41,6 +56,12 @@ var createSongRow = function(songNumber, songName, songLength) {
 
   return template;
 };
+
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album) {
   // #1
@@ -67,4 +88,15 @@ var setCurrentAlbum = function(album) {
 
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
+
+  var albums = [albumPicasso, albumMarconi, albumCooper];
+  var index = 1;
+  albumImage.addEventListener("click", function(event) {
+    setCurrentAlbum(albums[index]);
+    index++;
+    if (index == albums.length) {
+      index = 0;
+    }
+  });
+
 };
