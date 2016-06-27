@@ -1,6 +1,6 @@
 // Example Album
 var albumPicasso = {
-  title: 'The Colors',
+  title: 'The Shapes',
   artist: 'Pablo Picasso',
   label: 'Cubism',
   year: '1881',
@@ -50,7 +50,7 @@ var setCurrentAlbum = function(album) {
   var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
   var albumImage = document.getElementsByClassName('album-cover-art')[0];
   var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-
+console.log(albumTitle);
   // #2
   albumTitle.firstChild.nodeValue = album.title;
   albumArtist.firstChild.nodeValue = album.artist;
@@ -73,7 +73,7 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
-
+  console.log("Hey");
   songListContainer.addEventListener('mouseover', function(event) {
     // Only target individual song rows during event delegation
     if (event.target.parentElement.className === 'album-view-song-item') {
