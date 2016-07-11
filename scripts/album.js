@@ -215,30 +215,25 @@ var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
+var $playerBarButton = $('.main-controls .play-pause');
 
 var togglePlayFromPlayerBar = function() {
+  var $currentCell = getSongNumberCell(currentlyPlayingSongNumber);
 
-  if (currentSoundFile.isPaused && $('.main-controls .play-pause').click()) {
-    $(this).html(pauseButtonTemplate);
+  if (currentSoundFile.isPaused()) {
+    $currentCell.html(pauseButtonTemplate);
     $('.main-controls .play-pause').html(playerBarPauseButton);
     currentSoundFile.play();
-  };
-
-  if (currentSoundFile !== null && $('.main-controls .play-pause').click()) {
-
-    $(this).html(playButtonTemplate);
+  } else {
+    $currentCell.html(playButtonTemplate);
     $('.main-controls .play-pause').html(playerBarPlayButton);
     currentSoundFile.pause();
-  };
-
+  }
 };
 
 $(document).ready(function() {
-
   setCurrentAlbum(albumPicasso);
   $previousButton.click(previousSong);
   $nextButton.click(nextSong);
-
-  var playbar = $('.main-controls .play-pause').click(togglePlayFromPlayerBar());
-
+  $playerBarButton.click(togglePlayFromPlayerBar);
 });
